@@ -116,7 +116,7 @@ const pricingManual = {
     abs: { under: 1200, over: 800 },
     carbon: { under: 2000, over: 1500 },
     tpu: { under: 1500, over: 1200 },
-    pps: { under: 4000, over: 3500 }
+    pps: { under: 5000, over: 4500 }
 };
 const MIN_PRICE = 20000;
 const CTV_PASSWORD = "CREO-GIAHAOONE"; 
