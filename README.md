@@ -6,15 +6,28 @@ Không cần cài đặt hay build — mở trực tiếp `index.html` là chạ
 ## Cấu trúc
 
 ```
-index.html            Trang chính
-css/style.css         Giao diện
-js/config.js          ⚙️ Số Zalo/điện thoại, địa chỉ bản đồ, ngôn ngữ mặc định
-js/i18n.js            🌐 Toàn bộ chữ trên trang theo từng ngôn ngữ
-js/products.js        📦 Danh sách sản phẩm (tên, mô tả song ngữ, ảnh, màu...)
-js/main.js            Tương tác (đổi ngôn ngữ, lọc, cửa sổ chi tiết...)
-js/hero3d.js          Bình hoa 3D ở đầu trang (Three.js)
-assets/products/      Ảnh sản phẩm (ảnh vuông, nền sáng, ~900px)
-CNAME                 Tên miền chính cho GitHub Pages
+index.html               Trang chính (Tiếng Việt — sinh tự động từ build.js)
+en/index.html            Trang Tiếng Anh (sinh tự động từ build.js)
+src/index.template.html  Bản mẫu HTML gốc (sửa giao diện HTML tại đây)
+css/style.css            Giao diện
+js/config.js             ⚙️ Số Zalo/điện thoại, mạng xã hội, địa chỉ, cấu hình SEO
+js/i18n.js               🌐 Toàn bộ chữ trên trang theo từng ngôn ngữ
+js/products.js           📦 Danh sách sản phẩm (tên, mô tả song ngữ, ảnh, màu...)
+js/render.js             Hàm render Bento & danh sách sản phẩm dùng chung
+js/main.js               Tương tác (đổi ngôn ngữ, lọc, cửa sổ chi tiết, deep-link...)
+js/hero3d.js             Bình hoa 3D ở đầu trang (Three.js)
+scripts/build.js         Script tạo lại index.html, en/index.html và sitemap.xml
+assets/products/         Ảnh sản phẩm (ảnh vuông, nền sáng, 900×900px)
+sitemap.xml, robots.txt  Sơ đồ trang & cấu hình cho công cụ tìm kiếm
+CNAME                    Tên miền chính cho GitHub Pages
+```
+
+## Build lại HTML tĩnh & Sitemap sau khi sửa mẫu
+
+Website vẫn tự cập nhật động trên trình duyệt khi bạn sửa `js/products.js`, `js/i18n.js`, `js/config.js`. Để cập nhật luôn HTML tĩnh phục vụ SEO & `sitemap.xml`, chạy lệnh sau trên macOS:
+
+```bash
+osascript -l JavaScript scripts/build.js
 ```
 
 ## Tuỳ chỉnh

@@ -154,6 +154,7 @@
     new IntersectionObserver(([e]) => (visible = e.isIntersecting)).observe(stage);
 
     const idle = reduced ? 0 : 0.0035;
+    let readyMarked = false;
     const tick = () => {
       requestAnimationFrame(tick);
       if (!visible) return;
@@ -166,6 +167,10 @@
       shadow.scale.setScalar(s);
       mat.color.lerp(targetColor, 0.08);
       renderer.render(scene, camera);
+      if (!readyMarked) {
+        readyMarked = true;
+        stage.classList.add("is-3d-ready");
+      }
     };
     tick();
   } catch (err) {

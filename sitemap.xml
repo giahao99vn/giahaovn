@@ -1,14 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<url>
-  <loc>https://giahao.vn/</loc>
-  <lastmod>2026-05-07T00:00:00+00:00</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>1.00</priority>
-</url>
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://giahao.vn/</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://giahao.vn/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://giahao.vn/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://giahao.vn/"/>
+    <image:image><image:loc>https://giahao.vn/assets/products/vase.jpg</image:loc><image:title>Bình hoa Xoắn – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/lamp.jpg</image:loc><image:title>Đèn Lithophane – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/figure.jpg</image:loc><image:title>Mèo Phi Hành Gia – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/coaster.jpg</image:loc><image:title>Bộ lót ly Gỗ – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/organizer.jpg</image:loc><image:title>Khay Bàn Làm Việc – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/stand.jpg</image:loc><image:title>Giá đỡ Điện thoại – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/keychain.jpg</image:loc><image:title>Móc khoá Hình học – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/planter.jpg</image:loc><image:title>Chậu cây Low-poly – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/nameplate.jpg</image:loc><image:title>Bảng gỗ Sóng – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/cablewave.jpg</image:loc><image:title>Thanh Giữ Cáp Gỗ Sóng – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/penholder.jpg</image:loc><image:title>Ống Cắm Bút Gân Xoắn Đế Gỗ – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/glassesstand.jpg</image:loc><image:title>Đế Đỡ Mắt Kính Đệm Vải Bố – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/acrylicstand.jpg</image:loc><image:title>Giá Đỡ Mica Uốn Sóng &amp; Đế Gỗ – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/magnotes.jpg</image:loc><image:title>Bảng Ghi Chú Vải Bố &amp; Mica Uốn – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/earbuddock.jpg</image:loc><image:title>Trạm Đỡ Đồng Hồ &amp; Tai Nghe – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/valetbox.jpg</image:loc><image:title>Hộp Phụ Kiện Nắp Gỗ &amp; Vòm Mica – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/canvastray.jpg</image:loc><image:title>Khay Gỗ Viền Sóng Lót Vải Bố – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/keytagdock.jpg</image:loc><image:title>Thanh Gỗ Sóng Hít Chìa Khóa – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/terraplanter.jpg</image:loc><image:title>Bộ Đôi Chậu Xoắn Khay Gỗ Lót Bần – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/calendar.jpg</image:loc><image:title>Lịch Vạn Niên Gỗ Sóng &amp; Mica Uốn – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/bookarch.jpg</image:loc><image:title>Cặp Chặn Sách Vòm Xoắn &amp; Mica Uốn – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/acryliclamp.jpg</image:loc><image:title>Đèn Ngủ Vòm Mica Sóng Uốn Nhiệt – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/wavelamp.jpg</image:loc><image:title>Đèn Ngủ Chao Gân Xoắn Đế Gỗ – GiaHao One</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://giahao.vn/en/</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://giahao.vn/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://giahao.vn/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://giahao.vn/"/>
+    <image:image><image:loc>https://giahao.vn/assets/products/vase.jpg</image:loc><image:title>Twist Vase – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/lamp.jpg</image:loc><image:title>Lithophane Lamp – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/figure.jpg</image:loc><image:title>Astro Cat – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/coaster.jpg</image:loc><image:title>Wood Coaster Set – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/organizer.jpg</image:loc><image:title>Desk Tray – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/stand.jpg</image:loc><image:title>Phone Stand – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/keychain.jpg</image:loc><image:title>Geo Keychains – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/planter.jpg</image:loc><image:title>Low-poly Planter – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/nameplate.jpg</image:loc><image:title>Wave Wood Panel – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/cablewave.jpg</image:loc><image:title>Wave Wood Cable Block – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/penholder.jpg</image:loc><image:title>Spiral Rib Pen Cup – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/glassesstand.jpg</image:loc><image:title>Canvas &amp; Wood Eyeglass Stand – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/acrylicstand.jpg</image:loc><image:title>Wave Acrylic &amp; Wood Stand – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/magnotes.jpg</image:loc><image:title>Canvas Magnetic Memo Easel – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/earbuddock.jpg</image:loc><image:title>Watch &amp; Earbuds Rest Dock – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/valetbox.jpg</image:loc><image:title>Wave &amp; Amber Acrylic Valet Box – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/canvastray.jpg</image:loc><image:title>Wave Wood &amp; Canvas Valet Tray – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/keytagdock.jpg</image:loc><image:title>Magnetic Wave Wood Key Bar – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/terraplanter.jpg</image:loc><image:title>Dual Spiral Planters on Wood Tray – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/calendar.jpg</image:loc><image:title>Perpetual Block Desk Calendar – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/bookarch.jpg</image:loc><image:title>Architectural Arch Bookends – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/acryliclamp.jpg</image:loc><image:title>Curved Wave Acrylic Dome Lamp – GiaHao One</image:title></image:image>
+    <image:image><image:loc>https://giahao.vn/assets/products/wavelamp.jpg</image:loc><image:title>Spiral Rib Shade Table Lamp – GiaHao One</image:title></image:image>
+  </url>
 </urlset>
