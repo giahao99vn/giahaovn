@@ -1,4 +1,7 @@
+# GiaHao One — https://giahao.vn
 User-agent: *
 Allow: /
+Disallow: /src/
+Disallow: /scripts/
 
 Sitemap: https://giahao.vn/sitemap.xml

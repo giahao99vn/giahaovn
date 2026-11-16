@@ -161,7 +161,10 @@
   /* ---------- Bento & Collection ---------- */
   let filter = "all";
   const tagHTML = (p) => {
-    const cls = p.tech === "u1" ? "card__tag--multi" : p.tech === "cnc" ? "card__tag--wood" : p.tech === "hybrid" ? "card__tag--hybrid" : "";
+    const cls = p.tech === "u1" ? "card__tag--multi"
+      : p.tech === "cnc" ? "card__tag--wood"
+      : p.tech === "alu" ? "card__tag--alu"
+      : p.tech === "hybrid" ? "card__tag--hybrid" : "";
     return `<span class="card__tag ${cls}">${t("tag." + p.tech)}</span>`;
   };
 
@@ -243,7 +246,9 @@
     const p = PRODUCTS.find((x) => x.id === id);
     if (!p) return;
     currentProductId = p.id;
-    const machine = p.tech === "hybrid" ? t("sheet.hybridTech") : (MACHINE[p.tech] || t("craft.c3.title"));
+    const machine = p.tech === "alu" ? t("sheet.aluTech")
+      : p.tech === "hybrid" ? t("sheet.hybridTech")
+      : (MACHINE[p.tech] || t("craft.c3.title"));
     body.innerHTML = `
       <div class="sheet__media"><img src="${ROOT + p.image}" alt="${L(p.name)}" width="900" height="900" /></div>
       <div class="sheet__info">

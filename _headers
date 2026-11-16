@@ -1,0 +1,21 @@
+# Cloudflare Pages / Netlify headers — cache & bảo mật (giúp tốc độ tải trang, một yếu tố xếp hạng của Google)
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+/assets/*
+  Cache-Control: public, max-age=2592000
+
+/css/*
+  Cache-Control: public, max-age=86400
+
+/js/*
+  Cache-Control: public, max-age=86400
+
+/src/*
+  X-Robots-Tag: noindex
+
+/scripts/*
+  X-Robots-Tag: noindex

@@ -28,11 +28,8 @@ function run() {
   };
 
   // Nạp dữ liệu với một đối tượng window giả
-  var window = (this.window = {});
-  eval(read("js/config.js"));
-  eval(read("js/i18n.js"));
-  eval(read("js/products.js"));
-  eval(read("js/render.js"));
+  const window = {};
+  ["js/config.js", "js/i18n.js", "js/products.js", "js/render.js"].forEach((f) => new Function("window", read(f))(window));
   const CFG = window.SITE_CONFIG, DICT = window.I18N, LANGS = window.LANGS, PRODUCTS = window.PRODUCTS, Render = window.Render;
   const esc = Render.esc;
   const template = read("src/index.template.html");
@@ -62,6 +59,29 @@ function run() {
 
     // ---------- Schema.org JSON-LD ----------
     const orgId = `${SITE}/#organization`;
+    const parseOffer = (p) => {
+      const raw = (p.price && p.price.vi) || "";
+      const nums = (raw.match(/\d+(?:\.\d+)*/g) || []).map((s) => Number(s.replace(/\./g, ""))).filter((n) => n >= 1000);
+      const itemUrl = `${urlFor(lang)}#p-${p.id}`;
+      if (nums.length >= 2) {
+        return {
+          "@type": "AggregateOffer",
+          lowPrice: String(nums[0]),
+          highPrice: String(nums[1]),
+          priceCurrency: "VND",
+          availability: "https://schema.org/InStock",
+          url: itemUrl
+        };
+      }
+      return {
+        "@type": "Offer",
+        price: String(nums[0] || 99000),
+        priceCurrency: "VND",
+        availability: "https://schema.org/InStock",
+        url: itemUrl
+      };
+    };
+
     const jsonld = {
       "@context": "https://schema.org",
       "@graph": [
@@ -71,16 +91,28 @@ function run() {
           name: CFG.brand,
           alternateName: CFG.altNames,
           url: `${SITE}/`,
-          logo: `${SITE}/assets/icon-512.png`,
+          logo: `${SITE}/assets/logo.png`,
           image: `${SITE}/assets/og-image.jpg`,
           description: t("meta.desc"),
           telephone: CFG.phoneIntl,
+          priceRange: "39.000₫ - 650.000₫",
           address: {
             "@type": "PostalAddress",
             streetAddress: CFG.address.street,
             addressLocality: CFG.address.locality,
             addressRegion: CFG.address.region,
             addressCountry: CFG.address.country
+          },
+          geo: {
+            "@type": "GeoCoordinates",
+            latitude: 9.736,
+            longitude: 105.275
+          },
+          openingHoursSpecification: {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            opens: "08:00",
+            closes: "21:00"
           },
           areaServed: { "@type": "Country", name: "Vietnam" },
           contactPoint: {
@@ -89,7 +121,7 @@ function run() {
             contactType: "customer service",
             availableLanguage: ["Vietnamese", "English"]
           },
-          knowsAbout: ["3D printing", "In 3D", "Multicolor 3D printing", "CNC wood milling", "Phay gỗ CNC"],
+          knowsAbout: ["3D printing", "In 3D", "Multicolor 3D printing", "CNC wood milling", "Phay gỗ CNC", "Phay nhôm CNC", "Ví cơ khí EDC", "Ốp giáp Smartkey"],
           ...(CFG.sameAs && CFG.sameAs.length ? { sameAs: CFG.sameAs } : {})
         },
         {
@@ -114,6 +146,14 @@ function run() {
           dateModified: today
         },
         {
+          "@type": "BreadcrumbList",
+          "@id": `${urlFor(lang)}#breadcrumb`,
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: CFG.brand, item: urlFor(lang) },
+            { "@type": "ListItem", position: 2, name: t("col.title").replace(/\.$/, ""), item: `${urlFor(lang)}#collection` }
+          ]
+        },
+        {
           "@type": "ItemList",
           "@id": `${urlFor(lang)}#collection`,
           name: t("col.title").replace(/\.$/, ""),
@@ -121,10 +161,18 @@ function run() {
           itemListElement: PRODUCTS.map((p, i) => ({
             "@type": "ListItem",
             position: i + 1,
-            name: R.L(p.name),
-            description: R.L(p.desc),
             url: `${urlFor(lang)}#p-${p.id}`,
-            image: `${SITE}/${p.image}`
+            item: {
+              "@type": "Product",
+              "@id": `${urlFor(lang)}#p-${p.id}`,
+              sku: p.id,
+              name: R.L(p.name),
+              description: R.L(p.desc),
+              image: `${SITE}/${p.image}`,
+              brand: { "@type": "Brand", name: CFG.brand },
+              material: R.L(p.material),
+              offers: parseOffer(p)
+            }
           }))
         }
       ]

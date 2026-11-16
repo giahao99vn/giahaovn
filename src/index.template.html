@@ -10,6 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>{{t:meta.title}}</title>
   <meta name="description" content="{{t:meta.desc}}" />
+  <meta name="keywords" content="{{t:meta.keywords}}" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <meta name="author" content="GiaHao One" />
   <meta name="application-name" content="GiaHao One" />
@@ -46,12 +47,13 @@
 
   <!-- Icons & PWA -->
   <meta name="theme-color" content="#ffffff" />
-  <link rel="icon" href="{{root}}assets/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="{{root}}assets/favicon-32.png" type="image/png" sizes="32x32" />
   <link rel="icon" href="{{root}}assets/icon-192.png" type="image/png" sizes="192x192" />
   <link rel="apple-touch-icon" href="{{root}}assets/apple-touch-icon.png" />
   <link rel="manifest" href="{{root}}site.webmanifest" />
 
   <!-- Performance -->
+  <link rel="preload" as="image" href="{{root}}assets/products/vi_co_khi_edc.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
@@ -76,7 +78,7 @@
   <header class="nav" id="nav">
     <div class="nav__inner">
       <a href="#top" class="wordmark" aria-label="GiaHao One">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 21 7v10l-9 5-9-5V7z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 12v10M3 7l9 5 9-5" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".5"/></svg>
+        <img src="{{root}}assets/logo-mark.png" alt="" width="28" height="28" class="wordmark__logo" />
         GiaHao One
       </a>
       <nav class="nav__links" id="navLinks" aria-label="Main">
@@ -115,7 +117,7 @@
       </div>
       <div class="stage reveal" id="stage">
         <canvas id="hero3d" aria-hidden="true"></canvas>
-        <div class="stage__fallback" id="stageFallback"><img src="{{root}}assets/products/vase.jpg" alt="{{t:meta.imgAlt}}" width="900" height="900" loading="lazy" /></div>
+        <div class="stage__fallback" id="stageFallback"><img src="{{root}}assets/products/vi_co_khi_edc.jpg" alt="{{t:meta.imgAlt}}" width="900" height="900" loading="lazy" /></div>
       </div>
       <div class="swatchbar reveal">
         <div class="swatchbar__dots" id="heroSwatches"></div>
@@ -186,6 +188,7 @@
     <section class="section" id="about" aria-labelledby="about-title">
       <div class="wrap">
         <div class="section__head section__head--center reveal">
+          <img src="{{root}}assets/logo.png" alt="GiaHao One — CNC Machining &amp; 3D Printing" width="180" height="156" class="about__logo" loading="lazy" />
           <h2 class="display" id="about-title" data-i18n="about.title">Vì sao là GiaHao One.</h2>
         </div>
         <div class="values">
@@ -271,7 +274,10 @@
   <footer class="footer">
     <div class="wrap">
       <div class="footer__top">
-        <span class="wordmark wordmark--sm">GiaHao One</span>
+        <span class="wordmark wordmark--sm">
+          <img src="{{root}}assets/logo-mark.png" alt="" width="22" height="22" class="wordmark__logo" />
+          GiaHao One
+        </span>
         <nav class="footer__langs" aria-label="{{t:nav.lang}}">{{footerLangs}}</nav>
       </div>
       <div class="footer__bottom">

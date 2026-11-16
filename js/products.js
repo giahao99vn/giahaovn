@@ -1,52 +1,80 @@
 /* ==========================================================
-   DANH SÁCH SẢN PHẨM — GiaHao One
+   DANH SÁCH SẢN PHẨM — GiaHao One (18 sản phẩm đã lọc)
    - cat:   "print" (in 3D) | "wood" (gỗ CNC) | "hybrid" (đa vật liệu)
-   - tech:  "max4" (Qidi Max 4) | "u1" (Snapmaker U1) | "cnc" (CNC 3 trục) | "hybrid" (Đa vật liệu)
+   - tech:  "max4" (Qidi Max 4) | "u1" (Snapmaker U1) | "cnc" (CNC 3 trục) | "hybrid" (Đa vật liệu) | "alu" (Nhôm CNC + In 3D)
    - image: ảnh sản phẩm trong assets/products/ (900x900, chuẩn Studio)
    - featured: "a".."e" để hiện trong khối "Nổi bật" (a = ô lớn nhất)
    - Văn bản viết theo dạng { vi: "...", en: "..." }
    ========================================================== */
 window.PRODUCTS = [
-  /* ---------- 9 SẢN PHẨM GỐC ---------- */
+  /* ---------- 5 SẢN PHẨM NHÔM CNC + IN 3D (KẾ HOẠCH TỔNG THỂ GIAHAOONE) ---------- */
   {
-    id: "vase", cat: "print", tech: "max4", image: "assets/products/vase.jpg", featured: "a",
-    colors: ["#c8643b", "#f2efe9", "#9caf88", "#2b2b2e"],
-    price: { vi: "159.000đ", en: "159,000₫" },
-    name: { vi: "Bình hoa Xoắn", en: "Twist Vase" },
-    tagline: { vi: "Đường cong sinh ra từ thuật toán.", en: "Curves born from an algorithm." },
+    id: "vi-co-khi", cat: "hybrid", tech: "alu", image: "assets/products/vi_co_khi_edc.jpg", featured: "a",
+    colors: ["#c8643b", "#1d1d1f", "#2f6fd6", "#9caf88"],
+    price: { vi: "350.000đ – 550.000đ", en: "350,000₫ – 550,000₫" },
+    name: { vi: "Ví Cơ Khí Quạt Thẻ", en: "Mechanical Card Wallet" },
+    tagline: { vi: "Một lần đẩy, thẻ xòe ra. Khắc chữ ký riêng.", en: "One push and cards fan out. Custom engraved." },
     desc: {
-      vi: "Thiết kế tham số với những đường gân xoắn mềm mại, bắt sáng theo từng góc nhìn. In liền khối, không mối nối.",
-      en: "A parametric design with soft spiralling ribs that catch the light from every angle. Printed as one seamless piece."
+      vi: "Hai tấm ốp nhôm 6061 dày 3 mm phay CNC vát cạnh kim cương kết hợp lõi đẩy thẻ in 3D bằng nhựa kỹ thuật PA-CF/PETG chịu lực cao. Khắc tên, chữ ký hoặc họa tiết riêng theo từng đơn.",
+      en: "Two 3 mm CNC-milled 6061 aluminum plates with diamond chamfers paired with an engineering-grade PA-CF/PETG card ejector core. Custom engraved with your name or signature."
     },
-    material: { vi: "PLA mờ", en: "Matte PLA" },
-    size: { vi: "Cao khoảng 200 mm", en: "Approx. 200 mm tall" }
+    material: { vi: "Nhôm 6061 (3mm), lõi PA-CF/PETG & ốc inox M3", en: "6061 aluminum (3mm), PA-CF/PETG core & M3 screws" },
+    size: { vi: "Khắc tên / chữ ký riêng · Chọn màu lõi", en: "Custom name/signature engraving · Custom core color" }
   },
   {
-    id: "lamp", cat: "print", tech: "max4", image: "assets/products/lamp.jpg", featured: "b",
-    colors: ["#f7f3ea", "#c89f6a"],
-    price: { vi: "219.000đ", en: "219,000₫" },
-    name: { vi: "Đèn Lithophane", en: "Lithophane Lamp" },
-    tagline: { vi: "Hình ảnh hiện lên khi ánh sáng bật.", en: "An image that appears in the light." },
+    id: "op-smartkey", cat: "hybrid", tech: "alu", image: "assets/products/op_giap_smartkey.jpg", featured: "b",
+    colors: ["#ff6a13", "#1d1d1f", "#c0c6d0"],
+    price: { vi: "220.000đ – 350.000đ", en: "220,000₫ – 350,000₫" },
+    name: { vi: "Ốp Giáp Smartkey Khắc Biển Số", en: "Smartkey CNC Armor & Tag" },
+    tagline: { vi: "Giáp nhôm chống va đập kèm Tag SĐT chủ xe.", en: "Impact-proof aluminum armor with an owner contact tag." },
     desc: {
-      vi: "Hình ảnh được tạo nên từ độ dày khác nhau của lớp nhựa — chỉ hiện rõ khi đèn sáng. Ánh sáng ấm, dịu mắt.",
-      en: "The image is formed by varying wall thickness — revealed only when lit. Warm, gentle light."
+      vi: "Hai ốp mặt nhôm 6061 dày 3 mm vát cạnh kim cương lót vòng đệm TPU dẻo chống sốc, kèm Tag khắc biển số xe, tên và SĐT khẩn cấp để người nhặt dễ dàng liên hệ trả lại (hỗ trợ Honda, Yamaha, VinFast & ô tô).",
+      en: "Two 3 mm diamond-chamfered 6061 aluminum shells with a shock-absorbing TPU liner, paired with a custom-engraved license plate & phone number tag so lost keys can be returned."
     },
-    material: { vi: "PLA trắng, đế gỗ tự nhiên", en: "White PLA, natural wood base" },
-    size: { vi: "Cao khoảng 150 mm", en: "Approx. 150 mm tall" }
+    material: { vi: "Nhôm 6061 (3mm), đệm TPU chống sốc & ốc inox M3", en: "6061 aluminum (3mm), TPU shock liner & M3 screws" },
+    size: { vi: "Khắc biển số, tên & SĐT · Theo mẫu chìa khóa", en: "Engraved plate & phone · Fitted to key model" }
   },
   {
-    id: "figure", cat: "print", tech: "u1", image: "assets/products/figure.jpg", featured: "c",
-    colors: ["#ff6b3d", "#ffffff", "#2f6fd6", "#ffd23f"],
-    price: { vi: "99.000đ", en: "99,000₫" },
-    name: { vi: "Mèo Phi Hành Gia", en: "Astro Cat" },
-    tagline: { vi: "Rực rỡ, ngay từ bản in.", en: "Colorful, straight off the printer." },
+    id: "khay-modun", cat: "hybrid", tech: "alu", image: "assets/products/khay_modun_cnc.jpg",
+    colors: ["#1d1d1f", "#c0c6d0", "#9caf88"],
+    price: { vi: "380.000đ – 650.000đ", en: "380,000₫ – 650,000₫" },
+    name: { vi: "Hệ Khay Bàn Mô-đun Nam Châm", en: "Magnetic Modular Desk Tray" },
+    tagline: { vi: "Chia ngăn vừa khít đồ dùng, nắp nhôm khắc tên.", en: "Custom-fitted compartments with an engraved aluminum lid." },
     desc: {
-      vi: "Mô hình để bàn đa màu được in trọn vẹn trong một lần, màu sắc nằm ngay trong vật liệu — không sơn, không phai.",
-      en: "A multicolor desk figure printed in a single run, with color built into the material — no paint, no fading."
+      vi: "Khay chính in 3D khổ lớn trên Qidi Max 4 chia ngăn theo cỡ đồng hồ, bút, tai nghe của bạn; kết hợp nắp trượt và khay phụ bằng nhôm 6061 dày 3–4 mm gắn nam châm, khắc tên chống trầy.",
+      en: "A large-format 3D-printed body on Qidi Max 4 divided to fit your watch, pen and earbuds, paired with a magnetic sliding lid and sub-trays CNC-milled from 3–4 mm 6061 aluminum."
     },
-    material: { vi: "PLA đa màu", en: "Multicolor PLA" },
-    size: { vi: "Cao khoảng 90 mm", en: "Approx. 90 mm tall" }
+    material: { vi: "Thân in 3D (Qidi Max 4), nắp & khay nhôm 6061, nam châm", en: "3D-printed body, 6061 aluminum lid & trays, magnets" },
+    size: { vi: "Tùy chỉnh ngăn theo đồ · Khắc tên lên nắp nhôm", en: "Custom compartment sizing · Engraved aluminum lid" }
   },
+  {
+    id: "keybar", cat: "hybrid", tech: "alu", image: "assets/products/keybar_dao_mo_hop.jpg",
+    colors: ["#ff6a13", "#1d1d1f", "#2f6fd6"],
+    price: { vi: "180.000đ – 320.000đ", en: "180,000₫ – 320,000₫" },
+    name: { vi: "KeyBar & Mở Hộp EDC Khắc Tên", en: "Custom KeyBar & EDC Cutter" },
+    tagline: { vi: "Xếp gọn chùm chìa khóa, mở hộp nhanh gọn.", en: "Stack keys silently and unbox parcels with ease." },
+    desc: {
+      vi: "Thanh kẹp chìa khóa KeyBar và dụng cụ mở hộp EDC phay từ nhôm tấm 6061 dày 3 mm chịu xoắn vặn hàng ngày, kết hợp thanh trượt nhựa kỹ thuật PA-CF nhiều màu và khắc tên/ngày kỷ niệm.",
+      en: "A key organizer and compact EDC box cutter CNC-milled from 3 mm 6061 aluminum plate for daily torque resistance, with a multicolor PA-CF slider and custom name engraving."
+    },
+    material: { vi: "Nhôm 6061 (3mm), thanh trượt PA-CF & ốc inox", en: "6061 aluminum (3mm), PA-CF slider & stainless screws" },
+    size: { vi: "Khắc tên, ngày kỷ niệm hoặc logo nhóm", en: "Custom name, date or team logo engraving" }
+  },
+  {
+    id: "bo-lot-ly-nhom", cat: "hybrid", tech: "alu", image: "assets/products/bo_lot_ly_nhom_tpu.jpg",
+    colors: ["#1d1d1f", "#ff6a13", "#c0c6d0"],
+    price: { vi: "320.000đ – 480.000đ / bộ 4", en: "320,000₫ – 480,000₫ / set of 4" },
+    name: { vi: "Bộ 4 Đế Lót Ly Nhôm + TPU & Khay", en: "Hex Aluminum + TPU Coaster Set" },
+    tagline: { vi: "Vành nhôm lục giác, lõi TPU thoát nước chống dính ly.", en: "Hexagonal aluminum rim with anti-stick draining TPU core." },
+    desc: {
+      vi: "Bộ 4 đế lót ly kết hợp vành lục giác nhôm 6061 dày 3–4 mm vát mép khắc tên/logo và lõi TPU dẻo có rãnh thoát nước giúp nhấc ly đá không bị dính đáy, đi kèm khay đứng in 3D.",
+      en: "Four coasters uniting chamfered 3–4 mm hexagonal 6061 aluminum rims and grooved TPU cores that prevent iced glasses from sticking, complete with a 3D-printed holder stand."
+    },
+    material: { vi: "Vành nhôm 6061 (3–4mm), lõi TPU dẻo & khay in 3D", en: "6061 aluminum rim, flexible TPU core & 3D stand" },
+    size: { vi: "Bộ 4 chiếc kèm khay · Khắc tên/logo từ 1 bộ", en: "Set of 4 with stand · Custom logo from 1 set" }
+  },
+
+  /* ---------- 4 SẢN PHẨM GỖ CNC & IN 3D GỐC ---------- */
   {
     id: "coaster", cat: "wood", tech: "cnc", image: "assets/products/coaster.jpg", featured: "d",
     colors: ["#c89f6a", "#e5c79e"],
@@ -74,19 +102,6 @@ window.PRODUCTS = [
     size: { vi: "Khoảng 240 × 120 mm", en: "Approx. 240 × 120 mm" }
   },
   {
-    id: "stand", cat: "print", tech: "u1", image: "assets/products/stand.jpg",
-    colors: ["#f2efe9", "#9caf88", "#2b2b2e"],
-    price: { vi: "69.000đ", en: "69,000₫" },
-    name: { vi: "Giá đỡ Điện thoại", en: "Phone Stand" },
-    tagline: { vi: "Hai màu. Một khối.", en: "Two colors. One piece." },
-    desc: {
-      vi: "Giá đỡ tối giản với góc nghiêng thoải mái cho cuộc gọi video và xem nội dung. Phối hai màu ngay khi in.",
-      en: "A minimal stand angled for video calls and viewing, with two colors printed in."
-    },
-    material: { vi: "PLA hai màu", en: "Dual-color PLA" },
-    size: { vi: "Vừa hầu hết điện thoại", en: "Fits most phones" }
-  },
-  {
     id: "keychain", cat: "print", tech: "u1", image: "assets/products/keychain.jpg",
     colors: ["#ff6b3d", "#2f6fd6", "#ffd23f", "#ffffff"],
     price: { vi: "39.000đ / chiếc", en: "39,000₫ / each" },
@@ -112,46 +127,20 @@ window.PRODUCTS = [
     material: { vi: "PLA mờ", en: "Matte PLA" },
     size: { vi: "Khoảng 80 mm", en: "Approx. 80 mm" }
   },
-  {
-    id: "nameplate", cat: "wood", tech: "cnc", image: "assets/products/nameplate.jpg",
-    colors: ["#c89f6a", "#e5c79e"],
-    price: { vi: "119.000đ", en: "119,000₫" },
-    name: { vi: "Bảng gỗ Sóng", en: "Wave Wood Panel" },
-    tagline: { vi: "Những con sóng trên vân gỗ.", en: "Waves across the grain." },
-    desc: {
-      vi: "Tấm gỗ sồi và gỗ thông với hoa văn sóng nổi được phay CNC — điểm nhấn trang trí cho bàn làm việc hoặc kệ sách.",
-      en: "An oak and pine panel with raised CNC-milled waves — a decorative accent for desks and shelves."
-    },
-    material: { vi: "Gỗ sồi, gỗ thông", en: "Oak, pine" },
-    size: { vi: "Khoảng 200 × 80 mm", en: "Approx. 200 × 80 mm" }
-  },
 
-  /* ---------- 14 SẢN PHẨM ĐA VẬT LIỆU ĐỘC BẢN ---------- */
+  /* ---------- 8 SẢN PHẨM ĐA VẬT LIỆU ĐỘC BẢN ---------- */
   {
-    id: "cablewave", cat: "hybrid", tech: "hybrid", image: "assets/products/cablewave.jpg",
-    colors: ["#e5c79e", "#9caf88", "#c8643b", "#f2efe9"],
-    price: { vi: "69.000đ", en: "69,000₫" },
-    name: { vi: "Thanh Giữ Cáp Gỗ Sóng", en: "Wave Wood Cable Block" },
-    tagline: { vi: "Đằm nặng trên bàn, đóng mở bằng nam châm.", en: "Weighted wave wood with magnetic PLA clips." },
+    id: "calendar", cat: "hybrid", tech: "hybrid", image: "assets/products/calendar.jpg", featured: "c",
+    colors: ["#f2efe9", "#e5c79e", "#d97724", "#c8643b"],
+    price: { vi: "139.000đ", en: "139,000₫" },
+    name: { vi: "Lịch Vạn Niên Gỗ Sóng & Mica Uốn", en: "Perpetual Block Desk Calendar" },
+    tagline: { vi: "Xoay từng khối ngày, trượt vòng mica hổ phách.", en: "Turn multicolor date blocks, slide the amber acrylic cursor." },
     desc: {
-      vi: "Khối gỗ thông phay sóng 3D đằm nặng đặt trên bàn (đáy lót nỉ bám bàn không cần keo dán) kết hợp 3 ngàm khóa cáp in 3D PLA mờ đóng mở bằng nam châm Neodymium.",
-      en: "A weighted 3D wave-milled pine block with a non-slip felt bottom, paired with three matte PLA magnetic cable locking clips."
+      vi: "Đế gỗ thông phay sóng đỡ bộ khối ngày/tháng in 3D đa màu chìm không phai, đi kèm vòng trượt đánh dấu ngày bằng Mica màu hổ phách phay CNC và gia nhiệt uốn chữ U.",
+      en: "A wave-milled pine base holding multicolor 3D-printed date cubes and month bars, accented by a heat-bent U-shaped amber acrylic sliding cursor."
     },
-    material: { vi: "Gỗ thông phay sóng, PLA mờ, nam châm & đáy nỉ", en: "Wave-milled pine, matte PLA, magnets & felt" },
-    size: { vi: "Khoảng 120 × 38 × 22 mm", en: "Approx. 120 × 38 × 22 mm" }
-  },
-  {
-    id: "penholder", cat: "hybrid", tech: "hybrid", image: "assets/products/penholder.jpg",
-    colors: ["#9caf88", "#e5c79e", "#c8643b", "#f2efe9"],
-    price: { vi: "89.000đ", en: "89,000₫" },
-    name: { vi: "Ống Cắm Bút Gân Xoắn Đế Gỗ", en: "Spiral Rib Pen Cup" },
-    tagline: { vi: "Gân xoắn mềm mại trên chân đế gỗ đằm tay.", en: "Helical ribs seated in a weighted pine base." },
-    desc: {
-      vi: "Sự kết hợp giữa thân trên in 3D 6 múi gân xoắn đồng điệu với Bình hoa Xoắn và chân đế gỗ thông phay CNC nặng đằm ở đáy, bên trong lót vải nỉ êm bảo vệ ngòi bút.",
-      en: "Combines a 6-rib helical 3D-printed matte PLA upper cup with a weighted CNC-milled natural pine base and an interior felt pad to protect pen tips."
-    },
-    material: { vi: "PLA mờ, đế gỗ thông CNC & lót vải nỉ", en: "Matte PLA, CNC pine base & felt pad" },
-    size: { vi: "Cao khoảng 110 mm", en: "Approx. 110 mm tall" }
+    material: { vi: "PLA đa màu (U1), đế gỗ thông & mica hổ phách uốn", en: "Multicolor PLA, pine base & heat-bent amber acrylic" },
+    size: { vi: "Khoảng 135 × 70 mm", en: "Approx. 135 × 70 mm" }
   },
   {
     id: "glassesstand", cat: "hybrid", tech: "hybrid", image: "assets/products/glassesstand.jpg",
@@ -206,19 +195,6 @@ window.PRODUCTS = [
     size: { vi: "Khoảng 140 × 85 × 110 mm", en: "Approx. 140 × 85 × 110 mm" }
   },
   {
-    id: "valetbox", cat: "hybrid", tech: "hybrid", image: "assets/products/valetbox.jpg",
-    colors: ["#9caf88", "#e5c79e", "#d97724", "#3a3b3e"],
-    price: { vi: "119.000đ", en: "119,000₫" },
-    name: { vi: "Hộp Phụ Kiện Nắp Gỗ & Vòm Mica", en: "Wave & Amber Acrylic Valet Box" },
-    tagline: { vi: "Nắp xoay chốt đồng giữa gỗ sóng và mica uốn.", en: "A brass-pivoted lid uniting wave wood and curved acrylic." },
-    desc: {
-      vi: "Thân hộp in 3D PLA mờ gân xoắn lót vải nỉ; nắp trên kết hợp gỗ thông phay sóng và cửa sổ Mica màu hổ phách uốn cong nhẹ, xoay mượt quanh chốt đồng và hít khóa nam châm.",
-      en: "A spiral-fluted matte PLA box lined with dark felt, topped with a brass-pivoted swivel lid combining wave-milled pine and a curved amber acrylic window."
-    },
-    material: { vi: "PLA mờ, gỗ thông, mica hổ phách uốn, nỉ & chốt đồng", en: "Matte PLA, pine, curved amber acrylic, felt & brass" },
-    size: { vi: "Khoảng 120 × 85 × 58 mm", en: "Approx. 120 × 85 × 58 mm" }
-  },
-  {
     id: "canvastray", cat: "hybrid", tech: "hybrid", image: "assets/products/canvastray.jpg",
     colors: ["#e5c79e", "#dfd9ce", "#c8643b", "#9caf88"],
     price: { vi: "119.000đ", en: "119,000₫" },
@@ -256,57 +232,5 @@ window.PRODUCTS = [
     },
     material: { vi: "PLA mờ, khay gỗ thông CNC & lót gỗ bần (cork)", en: "Matte PLA, CNC pine tray & natural cork pads" },
     size: { vi: "Tổng thể khoảng 185 × 95 × 90 mm", en: "Overall approx. 185 × 95 × 90 mm" }
-  },
-  {
-    id: "calendar", cat: "hybrid", tech: "hybrid", image: "assets/products/calendar.jpg",
-    colors: ["#f2efe9", "#e5c79e", "#d97724", "#c8643b"],
-    price: { vi: "139.000đ", en: "139,000₫" },
-    name: { vi: "Lịch Vạn Niên Gỗ Sóng & Mica Uốn", en: "Perpetual Block Desk Calendar" },
-    tagline: { vi: "Xoay từng khối ngày, trượt vòng mica hổ phách.", en: "Turn multicolor date blocks, slide the amber acrylic cursor." },
-    desc: {
-      vi: "Đế gỗ thông phay sóng đỡ bộ khối ngày/tháng in 3D đa màu chìm không phai, đi kèm vòng trượt đánh dấu ngày bằng Mica màu hổ phách phay CNC và gia nhiệt uốn chữ U.",
-      en: "A wave-milled pine base holding multicolor 3D-printed date cubes and month bars, accented by a heat-bent U-shaped amber acrylic sliding cursor."
-    },
-    material: { vi: "PLA đa màu (U1), đế gỗ thông & mica hổ phách uốn", en: "Multicolor PLA, pine base & heat-bent amber acrylic" },
-    size: { vi: "Khoảng 135 × 70 mm", en: "Approx. 135 × 70 mm" }
-  },
-  {
-    id: "bookarch", cat: "hybrid", tech: "hybrid", image: "assets/products/bookarch.jpg",
-    colors: ["#c8643b", "#f2efe9", "#e5c79e"],
-    price: { vi: "149.000đ / cặp", en: "149,000₫ / pair" },
-    name: { vi: "Cặp Chặn Sách Vòm Xoắn & Mica Uốn", en: "Architectural Arch Bookends" },
-    tagline: { vi: "Vòm xoắn, gỗ sóng và lưỡi đỡ mica uốn chữ L.", en: "Spiral arches, wave wood and L-bent acrylic tongues." },
-    desc: {
-      vi: "Cặp chặn sách kiến trúc kết hợp khối gỗ thông phay sóng và vòm bậc thang gân xoắn in 3D PLA mờ, lồng khóa với lưỡi đỡ dưới sách bằng tấm Mica 4mm uốn nhiệt chữ L.",
-      en: "A pair of bookends uniting wave-milled pine blocks and spiral-ribbed matte PLA stepped arches with 4mm heat-bent L-curve frosted acrylic under-book tongues."
-    },
-    material: { vi: "Gỗ thông, PLA mờ & mica 4mm uốn nhiệt", en: "Pine wood, matte PLA & 4mm heat-bent acrylic" },
-    size: { vi: "Cao khoảng 155 mm / chiếc", en: "Approx. 155 mm tall each" }
-  },
-  {
-    id: "acryliclamp", cat: "hybrid", tech: "hybrid", image: "assets/products/acryliclamp.jpg",
-    colors: ["#f7f3ea", "#e5c79e"],
-    price: { vi: "159.000đ", en: "159,000₫" },
-    name: { vi: "Đèn Ngủ Vòm Mica Sóng Uốn Nhiệt", en: "Curved Wave Acrylic Dome Lamp" },
-    tagline: { vi: "Ánh sáng dẫn qua mái vòm mica phay sóng uốn cong.", en: "Warm LED light guided along a heat-bent wave acrylic arch." },
-    desc: {
-      vi: "Tấm Mica Đài Loan dày 4mm được phay CNC rãnh sóng rồi gia nhiệt uốn trên khuôn 3D thành mái vòm chữ U mềm mại, cắm lên đế gỗ thông phát sáng LED vàng ấm dọc theo đường cong.",
-      en: "A 4mm cast acrylic sheet CNC-milled with wave grooves and heat-formed into a 3D U-arch dome, glowing with warm LED light from a round CNC-milled pine base."
-    },
-    material: { vi: "Mica Đài Loan 4mm phay sóng uốn 3D, đế gỗ thông & LED ấm", en: "4mm 3D heat-bent wave acrylic, pine base & warm LED" },
-    size: { vi: "Cao khoảng 160 mm", en: "Approx. 160 mm tall" }
-  },
-  {
-    id: "wavelamp", cat: "hybrid", tech: "hybrid", image: "assets/products/wavelamp.jpg",
-    colors: ["#f7f3ea", "#e5c79e", "#c89f6a"],
-    price: { vi: "169.000đ", en: "169,000₫" },
-    name: { vi: "Đèn Ngủ Chao Gân Xoắn Đế Gỗ", en: "Spiral Rib Shade Table Lamp" },
-    tagline: { vi: "Ánh sáng vàng dịu lan tỏa qua gân xoắn.", en: "Soft warm light diffused through helical ribs." },
-    desc: {
-      vi: "Chao đèn hình trụ vòm in 3D gân sóng xoắn xuyên sáng bằng nhựa PLA trắng kem mờ (đồng bộ ngôn ngữ Bình hoa Xoắn), đặt trên chân đế gỗ tự nhiên phay CNC kèm mạch LED ấm.",
-      en: "A cylindrical-dome lampshade 3D-printed in warm off-white matte PLA with continuous helical ribs that diffuse a gentle warm glow over a CNC-milled natural wood base."
-    },
-    material: { vi: "PLA trắng kem xuyên sáng, đế gỗ CNC & LED ấm", en: "Translucent warm white PLA, CNC wood base & warm LED" },
-    size: { vi: "Cao khoảng 165 mm", en: "Approx. 165 mm tall" }
   }
 ];

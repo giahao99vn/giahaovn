@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>404 — Ngoài vùng gia công · GiaHao One</title>
+  <meta name="robots" content="noindex, follow" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32" data-asset="assets/favicon-32.png" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" data-asset="assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" data-asset="css/style.css" />
+  <style>
+    :root {
+      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    body {
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      background: radial-gradient(1200px 600px at 50% 0%, #f5f5f7 0%, #ffffff 70%);
+    }
+    .nf {
+      flex: 1;
+      padding: clamp(32px, 5vw, 64px) 0 clamp(56px, 8vw, 96px);
+      text-align: center;
+    }
+    .nf__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 980px;
+      background: #1d1d1f;
+      color: #f5f5f7;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .04em;
+    }
+    .nf__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ff6a13;
+      box-shadow: 0 0 0 4px rgba(255, 106, 19, .22);
+      animation: pulseDot 1.8s infinite;
+    }
+    @keyframes pulseDot {
+      50% { box-shadow: 0 0 0 8px rgba(255, 106, 19, 0); }
+    }
+    .nf__title {
+      font-size: clamp(32px, 5.2vw, 56px);
+      font-weight: 700;
+      letter-spacing: -.03em;
+      line-height: 1.08;
+      margin: 16px auto 12px;
+      max-width: 760px;
+    }
+    .nf__sub {
+      font-size: clamp(17px, 2vw, 20px);
+      color: var(--text-2);
+      max-width: 620px;
+      margin: 0 auto 28px;
+      line-height: 1.45;
+    }
+
+    /* ---------- Interactive CNC / 3D Print Stage ---------- */
+    .bed-wrap {
+      width: min(920px, 100%);
+      margin: 0 auto 28px;
+    }
+    .bed {
+      position: relative;
+      height: clamp(290px, 42vw, 410px);
+      border-radius: var(--radius-lg);
+      background: #121316;
+      box-shadow: 0 30px 70px -25px rgba(0, 0, 0, .28), inset 0 0 0 1px rgba(255, 255, 255, .08);
+      overflow: hidden;
+      cursor: crosshair;
+      touch-action: none;
+      user-select: none;
+    }
+    .bed canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .bed__hud {
+      position: absolute;
+      inset: 16px 20px auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      pointer-events: none;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: rgba(245, 245, 247, .72);
+    }
+    .bed__coords {
+      display: inline-flex;
+      gap: 12px;
+      padding: 6px 12px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, .06);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, .08);
+    }
+    .bed__coords b { color: #ff6a13; font-weight: 600; }
+    .bed__status {
+      padding: 6px 12px;
+      border-radius: 10px;
+      background: rgba(255, 106, 19, .14);
+      color: #ff8b42;
+      border: 1px solid rgba(255, 106, 19, .28);
+    }
+    .bed__bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+      padding: 0 4px;
+    }
+    .bed__modes {
+      display: inline-flex;
+      padding: 3px;
+      background: var(--gray-2);
+      border-radius: 980px;
+    }
+    .bed__modes button {
+      padding: 7px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 980px;
+      color: var(--text-2);
+      transition: background .2s, color .2s, box-shadow .2s;
+    }
+    .bed__modes button.is-active {
+      background: #fff;
+      color: var(--text);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
+    }
+    .bed__actions {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .bed__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 980px;
+      font-size: 13px;
+      font-weight: 500;
+      background: var(--gray);
+      color: var(--text);
+      transition: background .2s;
+    }
+    .bed__btn:hover { background: var(--gray-2); }
+    .bed__hint {
+      font-size: 13px;
+      color: var(--text-2);
+    }
+
+    /* ---------- CTAs & Quick Product Strip ---------- */
+    .nf__cta {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin: 28px 0 64px;
+    }
+    .nf__picks {
+      text-align: left;
+      border-top: 1px solid var(--gray-2);
+      padding-top: 44px;
+    }
+    .nf__picks-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+    .nf__picks-head h2 {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -.015em;
+    }
+    .nf__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+    .mini-card {
+      background: var(--gray);
+      border-radius: 22px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+    }
+    .mini-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 36px -18px rgba(0, 0, 0, .16);
+    }
+    .mini-card__img {
+      aspect-ratio: 1;
+      background: #e8e8ed;
+      overflow: hidden;
+    }
+    .mini-card__img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .8s var(--ease);
+    }
+    .mini-card:hover .mini-card__img img {
+      transform: scale(1.05);
+    }
+    .mini-card__body {
+      padding: 16px 18px 18px;
+    }
+    .mini-card__tag {
+      font-size: 11px;
+      font-weight: 600;
+      color: #bf4800;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .mini-card__body h3 {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -.01em;
+    }
+    .mini-card__price {
+      font-size: 13px;
+      color: var(--text-2);
+      margin-top: 4px;
+      display: block;
+    }
+
+    @media (max-width: 860px) {
+      .nf__grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .bed__hud { inset: 12px 12px auto; font-size: 11px; }
+      .bed__status { display: none; }
+      .bed__bar { justify-content: center; }
+      .nf__grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .mini-card__body { padding: 12px 14px 14px; }
+      .mini-card__body h3 { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== Header ===== -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="/" class="wordmark" data-home aria-label="GiaHao One">
+        <img src="/assets/logo-mark.png" data-asset="assets/logo-mark.png" alt="" width="28" height="28" class="wordmark__logo" />
+        GiaHao One
+      </a>
+      <div class="nav__right">
+        <button class="lang__btn" id="langToggle" type="button" aria-label="Switch language">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          <span id="langLabel">VI</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== 404 Main ===== -->
+  <main class="nf">
+    <div class="wrap">
+      <span class="nf__badge">
+        <span class="nf__dot"></span>
+        <span>G-CODE ERR_404 · OUT OF BOUNDS</span>
+      </span>
+      <h1 class="nf__title" data-i18n="title">Tọa độ này nằm ngoài bàn máy.</h1>
+      <p class="nf__sub" data-i18n="sub">Đường dẫn bạn vừa mở không tồn tại hoặc đã thay đổi. Hãy thử điều khiển đầu máy trên bàn gia công bên dưới, hoặc quay về bộ sưu tập của GiaHao One.</p>
+
+      <!-- Interactive CNC / 3D Print Bed -->
+      <div class="bed-wrap">
+        <div class="bed" id="bed">
+          <canvas id="simCanvas" aria-label="Interactive 404 CNC and 3D Print simulation"></canvas>
+          <div class="bed__hud">
+            <div class="bed__coords">
+              <span><b>X</b> <span id="hudX">150.0</span></span>
+              <span><b>Y</b> <span id="hudY">095.0</span></span>
+              <span><b>Z</b> <span id="hudZ">-3.00</span></span>
+            </div>
+            <div class="bed__status" id="hudMode">T1 · ENDMILL Ø2.5mm · 12000 RPM</div>
+          </div>
+        </div>
+        <div class="bed__bar">
+          <div class="bed__modes" role="tablist">
+            <button type="button" class="is-active" data-mode="cnc" data-i18n="mode.cnc">Phay nhôm CNC</button>
+            <button type="button" data-mode="print" data-i18n="mode.print">In 3D đa màu</button>
+          </div>
+          <span class="bed__hint" data-i18n="hint">Di chuột hoặc chạm kéo trên bàn máy để phay / in thêm nét</span>
+          <div class="bed__actions">
+            <button type="button" class="bed__btn" id="replayBtn">
+              <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 12a9 9 0 1 0 3-6.7L3 8m0-5v5h5"/></svg>
+              <span data-i18n="replay">Chạy lại G-code 404</span>
+            </button>
+            <button type="button" class="bed__btn" id="clearBtn" data-i18n="clear">Xóa phôi</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Primary CTAs -->
+      <div class="nf__cta">
+        <a class="btn btn--primary" href="/" data-home data-i18n="cta.home">Về trang chủ</a>
+        <a class="btn btn--secondary" href="/#collection" data-col data-i18n="cta.col">Xem bộ sưu tập</a>
+        <a class="link-chevron" href="https://zalo.me/0704141237" target="_blank" rel="noopener" data-i18n="cta.zalo">Nhắn Zalo 0704 141 237</a>
+      </div>
+
+      <!-- Featured Product Picks -->
+      <section class="nf__picks" aria-labelledby="picks-title">
+        <div class="nf__picks-head">
+          <h2 id="picks-title" data-i18n="picks.title">Sản phẩm nổi bật</h2>
+          <a class="link-chevron" href="/#collection" data-col data-i18n="picks.all">Xem tất cả 17 sản phẩm</a>
+        </div>
+        <div class="nf__grid">
+          <a class="mini-card" href="/#p-vi-co-khi" data-prod="vi-co-khi">
+            <div class="mini-card__img"><img src="/assets/products/vi_co_khi_edc.jpg" data-asset="assets/products/vi_co_khi_edc.jpg" alt="Ví Cơ Khí Quạt Thẻ" width="450" height="450" loading="lazy" /></div>
+            <div class="mini-card__body">
+              <span class="mini-card__tag" data-i18n="tag.alu">Nhôm CNC + In 3D</span>
+              <h3 data-i18n="p1.name">Ví Cơ Khí Quạt Thẻ</h3>
+              <span class="mini-card__price">350.000đ – 550.000đ</span>
+            </div>
+          </a>
+          <a class="mini-card" href="/#p-op-smartkey" data-prod="op-smartkey">
+            <div class="mini-card__img"><img src="/assets/products/op_giap_smartkey.jpg" data-asset="assets/products/op_giap_smartkey.jpg" alt="Ốp Giáp Smartkey Khắc Biển Số" width="450" height="450" loading="lazy" /></div>
+            <div class="mini-card__body">
+              <span class="mini-card__tag" data-i18n="tag.alu">Nhôm CNC + In 3D</span>
+              <h3 data-i18n="p2.name">Ốp Giáp Smartkey</h3>
+              <span class="mini-card__price">220.000đ – 350.000đ</span>
+            </div>
+          </a>
+          <a class="mini-card" href="/#p-khay-modun" data-prod="khay-modun">
+            <div class="mini-card__img"><img src="/assets/products/khay_modun_cnc.jpg" data-asset="assets/products/khay_modun_cnc.jpg" alt="Hệ Khay Bàn Mô-đun Nam Châm" width="450" height="450" loading="lazy" /></div>
+            <div class="mini-card__body">
+              <span class="mini-card__tag" data-i18n="tag.alu">Nhôm CNC + In 3D</span>
+              <h3 data-i18n="p3.name">Khay Bàn Mô-đun</h3>
+              <span class="mini-card__price">380.000đ – 650.000đ</span>
+            </div>
+          </a>
+          <a class="mini-card" href="/#p-calendar" data-prod="calendar">
+            <div class="mini-card__img"><img src="/assets/products/calendar.jpg" data-asset="assets/products/calendar.jpg" alt="Lịch Vạn Niên Gỗ Sóng & Mica Uốn" width="450" height="450" loading="lazy" /></div>
+            <div class="mini-card__body">
+              <span class="mini-card__tag" data-i18n="tag.hybrid">Đa vật liệu</span>
+              <h3 data-i18n="p4.name">Lịch Vạn Niên Gỗ Sóng</h3>
+              <span class="mini-card__price">139.000đ</span>
+            </div>
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__bottom" style="padding-top:0">
+        <p>© <span id="year">2026</span> GiaHao One · giahao.vn · giahaoone.com</p>
+        <p data-i18n="footer.made">Thiết kế và chế tác tại Việt Nam.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const $ = (s, el = document) => el.querySelector(s);
+      const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+
+      // Hỗ trợ mở trực tiếp qua file:// trên máy tính
+      if (location.protocol === "file:") {
+        $$("[data-asset]").forEach((el) => {
+          const attr = el.tagName === "LINK" ? "href" : "src";
+          el.setAttribute(attr, el.dataset.asset);
+        });
+        $$("[data-home]").forEach((a) => a.setAttribute("href", "index.html"));
+        $$("[data-col]").forEach((a) => a.setAttribute("href", "index.html#collection"));
+        $$("[data-prod]").forEach((a) => a.setAttribute("href", `index.html#p-${a.dataset.prod}`));
+      }
+
+      /* ---------- Song ngữ VI / EN ---------- */
+      const COPY = {
+        vi: {
+          docTitle: "404 — Ngoài vùng gia công · GiaHao One",
+          title: "Tọa độ này nằm ngoài bàn máy.",
+          sub: "Đường dẫn bạn vừa mở không tồn tại hoặc đã thay đổi. Hãy thử điều khiển đầu máy trên bàn gia công bên dưới, hoặc quay về bộ sưu tập của GiaHao One.",
+          "mode.cnc": "Phay nhôm CNC",
+          "mode.print": "In 3D đa màu",
+          hint: "Di chuột hoặc chạm kéo trên bàn máy để phay / in thêm nét",
+          replay: "Chạy lại G-code 404",
+          clear: "Làm mới phôi",
+          "cta.home": "Về trang chủ",
+          "cta.col": "Xem bộ sưu tập",
+          "cta.zalo": "Nhắn Zalo 0704 141 237",
+          "picks.title": "Sản phẩm nổi bật",
+          "picks.all": "Xem tất cả 17 sản phẩm",
+          "tag.alu": "Nhôm CNC + In 3D",
+          "tag.hybrid": "Đa vật liệu",
+          "p1.name": "Ví Cơ Khí Quạt Thẻ",
+          "p2.name": "Ốp Giáp Smartkey",
+          "p3.name": "Khay Bàn Mô-đun",
+          "p4.name": "Lịch Vạn Niên Gỗ Sóng",
+          "footer.made": "Thiết kế và chế tác tại Việt Nam."
+        },
+        en: {
+          docTitle: "404 — Out of Bounds · GiaHao One",
+          title: "This coordinate is off the build plate.",
+          sub: "The link you followed doesn't exist or has moved. Guide the toolhead on the workbed below, or head back to the GiaHao One collection.",
+          "mode.cnc": "CNC Aluminum Mill",
+          "mode.print": "Multicolor 3D Print",
+          hint: "Drag across the workbed to mill aluminum or extrude 3D filament",
+          replay: "Replay 404 G-code",
+          clear: "Reset stock",
+          "cta.home": "Back to Home",
+          "cta.col": "Explore Collection",
+          "cta.zalo": "Message on Zalo",
+          "picks.title": "Featured Products",
+          "picks.all": "View all 17 products",
+          "tag.alu": "CNC Aluminum + 3D Print",
+          "tag.hybrid": "Multi-material",
+          "p1.name": "Mechanical Card Wallet",
+          "p2.name": "Smartkey CNC Armor",
+          "p3.name": "Magnetic Modular Tray",
+          "p4.name": "Perpetual Wood Calendar",
+          "footer.made": "Designed and crafted in Vietnam."
+        }
+      };
+
+      let lang = localStorage.getItem("lang") || ((navigator.language || "").startsWith("vi") ? "vi" : "vi");
+      const applyLang = (code) => {
+        lang = COPY[code] ? code : "vi";
+        try { localStorage.setItem("lang", lang); } catch (_) {}
+        document.documentElement.lang = lang;
+        document.title = COPY[lang].docTitle;
+        $("#langLabel").textContent = lang.toUpperCase();
+        $$("[data-i18n]").forEach((el) => {
+          const k = el.dataset.i18n;
+          if (COPY[lang][k]) el.textContent = COPY[lang][k];
+        });
+      };
+      $("#langToggle").addEventListener("click", () => applyLang(lang === "vi" ? "en" : "vi"));
+      applyLang(lang);
+      $("#year").textContent = new Date().getFullYear();
+
+      /* ---------- Mô phỏng Bàn Máy CNC & In 3D khắc chữ 404 ---------- */
+      const bed = $("#bed");
+      const canvas = $("#simCanvas");
+      const ctx = canvas.getContext("2d");
+      const hudX = $("#hudX"), hudY = $("#hudY"), hudZ = $("#hudZ"), hudMode = $("#hudMode");
+
+      let W = 900, H = 380, dpr = Math.min(window.devicePixelRatio || 1, 2);
+      let mode = "cnc"; // "cnc" | "print"
+      const printPalette = ["#ff6a13", "#9caf88", "#2f6fd6", "#f2efe9"];
+      let colorIdx = 0;
+
+      // Danh sách các đường chạy dao (strokes) và hạt phoi / tia lửa (particles)
+      let strokes = [];
+      let particles = [];
+      let autoQueue = [];
+      let tool = { x: 450, y: 190, z: -3.0, targetX: 450, targetY: 190, cutting: false, angle: 0 };
+
+      // Tạo đường G-code hình số "4 0 4" có vát cạnh cơ khí (chamfered octagonal digits)
+      const build404Paths = () => {
+        const cx = W / 2, cy = H / 2 + 8;
+        const sc = Math.min(W / 760, H / 290);
+        const pt = (dx, dy) => ({ x: cx + dx * sc, y: cy + dy * sc });
+
+        // Số 4 bên trái
+        const d4L = [
+          pt(-165, 68), pt(-165, -68), pt(-235, 22), pt(-140, 22)
+        ];
+        // Số 0 vát góc lục giác ở giữa (biểu tượng ốc/vành lục giác CNC)
+        const d0 = [
+          pt(-45, -68), pt(45, -68), pt(65, -44), pt(65, 44),
+          pt(45, 68), pt(-45, 68), pt(-65, 44), pt(-65, -44), pt(-45, -68)
+        ];
+        // Rãnh vát bên trong số 0
+        const d0Inner = [
+          pt(-24, -38), pt(24, -38), pt(34, -24), pt(34, 24),
+          pt(24, 38), pt(-24, 38), pt(-34, 24), pt(-34, -24), pt(-24, -38)
+        ];
+        // Số 4 bên phải
+        const d4R = [
+          pt(210, 68), pt(210, -68), pt(140, 22), pt(235, 22)
+        ];
+
+        return [
+          { pts: d4L, color: mode === "cnc" ? "alu" : "#ff6a13" },
+          { pts: d0, color: mode === "cnc" ? "alu" : "#9caf88" },
+          { pts: d0Inner, color: mode === "cnc" ? "chamfer" : "#2f6fd6" },
+          { pts: d4R, color: mode === "cnc" ? "alu" : "#ff6a13" }
+        ];
+      };
+
+      const spawnSparks = (x, y, count, col) => {
+        for (let i = 0; i < count; i++) {
+          const a = Math.random() * Math.PI * 2;
+          const sp = 1.2 + Math.random() * 4.2;
+          particles.push({
+            x, y,
+            vx: Math.cos(a) * sp,
+            vy: Math.sin(a) * sp - 0.8,
+            life: 1,
+            decay: 0.025 + Math.random() * 0.03,
+            size: 1.5 + Math.random() * 2.2,
+            color: col || (mode === "cnc" ? (Math.random() > 0.35 ? "#ff9f43" : "#e2e6ee") : printPalette[colorIdx % printPalette.length])
+          });
+        }
+      };
+
+      // Chia nhỏ các đoạn thẳng thành hàng đợi điểm để đầu máy chạy mượt theo G-code
+      const startAuto404 = () => {
+        strokes = [];
+        autoQueue = [];
+        const paths = build404Paths();
+        paths.forEach((path) => {
+          const stroke = { mode, color: path.color, pts: [path.pts[0]] };
+          autoQueue.push({ type: "rapid", x: path.pts[0].x, y: path.pts[0].y, stroke });
+          for (let i = 0; i < path.pts.length - 1; i++) {
+            const a = path.pts[i], b = path.pts[i + 1];
+            const dist = Math.hypot(b.x - a.x, b.y - a.y);
+            const steps = Math.max(4, Math.round(dist / 6.5));
+            for (let s = 1; s <= steps; s++) {
+              const t = s / steps;
+              autoQueue.push({
+                type: "cut",
+                x: a.x + (b.x - a.x) * t,
+                y: a.y + (b.y - a.y) * t,
+                stroke
+              });
+            }
+          }
+        });
+      };
+
+      const resize = () => {
+        const r = bed.getBoundingClientRect();
+        W = Math.max(300, Math.round(r.width));
+        H = Math.max(240, Math.round(r.height));
+        canvas.width = W * dpr;
+        canvas.height = H * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        startAuto404();
+      };
+      new ResizeObserver(resize).observe(bed);
+      resize();
+
+      /* ---------- Tương tác kéo chuột / cảm ứng để tự phay hoặc in ---------- */
+      let userStroke = null;
+      const getPos = (e) => {
+        const r = canvas.getBoundingClientRect();
+        return { x: e.clientX - r.left, y: e.clientY - r.top };
+      };
+
+      bed.addEventListener("pointerdown", (e) => {
+        bed.setPointerCapture(e.pointerId);
+        autoQueue = []; // dừng chạy tự động để người dùng điều khiển trực tiếp
+        const p = getPos(e);
+        colorIdx = (colorIdx + 1) % printPalette.length;
+        userStroke = {
+          mode,
+          color: mode === "cnc" ? "alu" : printPalette[colorIdx],
+          pts: [p]
+        };
+        strokes.push(userStroke);
+        tool.x = tool.targetX = p.x;
+        tool.y = tool.targetY = p.y;
+        tool.cutting = true;
+        spawnSparks(p.x, p.y, 14);
+      });
+
+      bed.addEventListener("pointermove", (e) => {
+        const p = getPos(e);
+        tool.targetX = p.x;
+        tool.targetY = p.y;
+        if (!userStroke) return;
+        const last = userStroke.pts[userStroke.pts.length - 1];
+        if (Math.hypot(p.x - last.x, p.y - last.y) > 3) {
+          userStroke.pts.push(p);
+          spawnSparks(p.x, p.y, 3);
+        }
+      });
+
+      const stopDraw = () => {
+        userStroke = null;
+        tool.cutting = false;
+      };
+      bed.addEventListener("pointerup", stopDraw);
+      bed.addEventListener("pointercancel", stopDraw);
+
+      /* ---------- Nút điều khiển ---------- */
+      $$(".bed__modes button").forEach((b) => {
+        b.addEventListener("click", () => {
+          $$(".bed__modes button").forEach((x) => x.classList.toggle("is-active", x === b));
+          mode = b.dataset.mode;
+          hudMode.textContent = mode === "cnc"
+            ? "T1 · ENDMILL Ø2.5mm · 12000 RPM"
+            : "U1 · DUAL NOZZLE Ø0.4mm · 220°C";
+          startAuto404();
+        });
+      });
+      $("#replayBtn").addEventListener("click", startAuto404);
+      $("#clearBtn").addEventListener("click", () => {
+        autoQueue = [];
+        strokes = [];
+      });
+
+      /* ---------- Vòng lặp dựng hình 60fps ---------- */
+      const drawGrid = () => {
+        ctx.fillStyle = "#121316";
+        ctx.fillRect(0, 0, W, H);
+
+        // Lưới tọa độ bàn máy 30mm
+        const step = 30;
+        ctx.lineWidth = 1;
+        for (let x = step; x < W; x += step) {
+          ctx.strokeStyle = x % 150 === 0 ? "rgba(255,255,255,.08)" : "rgba(255,255,255,.035)";
+          ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+        }
+        for (let y = step; y < H; y += step) {
+          ctx.strokeStyle = y % 150 === 0 ? "rgba(255,255,255,.08)" : "rgba(255,255,255,.035)";
+          ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+        }
+
+        // 4 chốt kẹp bàn máy ở góc
+        ctx.fillStyle = "rgba(255,255,255,.12)";
+        [[18, H - 18], [W - 18, H - 18]].forEach(([cx, cy]) => {
+          ctx.beginPath(); ctx.arc(cx, cy, 5, 0, Math.PI * 2); ctx.fill();
+        });
+      };
+
+      const drawStroke = (s) => {
+        if (s.pts.length < 2) return;
+        ctx.lineCap = "round";
+        ctx.lineJoin = "round";
+
+        const path = () => {
+          ctx.beginPath();
+          ctx.moveTo(s.pts[0].x, s.pts[0].y);
+          for (let i = 1; i < s.pts.length; i++) ctx.lineTo(s.pts[i].x, s.pts[i].y);
+        };
+
+        if (s.mode === "cnc") {
+          const isChamfer = s.color === "chamfer";
+          // Mép vát kim cương bên ngoài
+          path();
+          ctx.strokeStyle = isChamfer ? "rgba(255, 106, 19, .55)" : "rgba(255, 255, 255, .22)";
+          ctx.lineWidth = isChamfer ? 7 : 14;
+          ctx.stroke();
+
+          // Rãnh nhôm phay sáng bóng ở tâm
+          path();
+          ctx.strokeStyle = isChamfer ? "#ff7a29" : "#d8dde6";
+          ctx.lineWidth = isChamfer ? 3 : 8;
+          ctx.stroke();
+
+          // Đường phản quang mảnh
+          path();
+          ctx.strokeStyle = "#ffffff";
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+        } else {
+          // Chế độ In 3D: bóng đổ dưới + sợi nhựa PLA mờ có gân sáng
+          path();
+          ctx.strokeStyle = "rgba(0,0,0,.45)";
+          ctx.lineWidth = 14;
+          ctx.stroke();
+
+          path();
+          ctx.strokeStyle = s.color;
+          ctx.lineWidth = 10;
+          ctx.stroke();
+
+          path();
+          ctx.strokeStyle = "rgba(255,255,255,.28)";
+          ctx.lineWidth = 2.2;
+          ctx.stroke();
+        }
+      };
+
+      const drawToolhead = () => {
+        const { x, y, cutting } = tool;
+        tool.angle += cutting ? 0.35 : 0.1;
+
+        // Thanh trượt trục X / Y (Gantry)
+        ctx.strokeStyle = "rgba(255,255,255,.1)";
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(x, 0); ctx.lineTo(x, H);
+        ctx.moveTo(0, y); ctx.lineTo(W, y);
+        ctx.stroke();
+
+        // Quầng sáng tại mũi dao / đầu in
+        const glow = ctx.createRadialGradient(x, y, 2, x, y, cutting ? 28 : 18);
+        glow.addColorStop(0, cutting ? "rgba(255, 120, 35, .55)" : "rgba(61, 214, 245, .3)");
+        glow.addColorStop(1, "rgba(0, 0, 0, 0)");
+        ctx.fillStyle = glow;
+        ctx.beginPath(); ctx.arc(x, y, 28, 0, Math.PI * 2); ctx.fill();
+
+        // Vòng xoay đầu dao / đầu phun
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(tool.angle);
+        ctx.strokeStyle = mode === "cnc" ? "#f5f5f7" : "#ff6a13";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(0, 0, 9, 0, Math.PI * 1.3);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(0, 0, 3, 0, Math.PI * 2);
+        ctx.fillStyle = "#ff6a13";
+        ctx.fill();
+        ctx.restore();
+      };
+
+      const tick = () => {
+        requestAnimationFrame(tick);
+
+        // Chạy hàng đợi G-code tự động
+        if (autoQueue.length > 0) {
+          for (let step = 0; step < 2 && autoQueue.length > 0; step++) {
+            const cmd = autoQueue.shift();
+            tool.x = tool.targetX = cmd.x;
+            tool.y = tool.targetY = cmd.y;
+            if (cmd.type === "rapid") {
+              tool.cutting = false;
+              tool.z = 5.0;
+              strokes.push(cmd.stroke);
+            } else {
+              tool.cutting = true;
+              tool.z = mode === "cnc" ? -3.0 : 0.2;
+              cmd.stroke.pts.push({ x: cmd.x, y: cmd.y });
+              if (Math.random() > 0.35) spawnSparks(cmd.x, cmd.y, 2);
+            }
+          }
+        } else if (!userStroke) {
+          tool.x += (tool.targetX - tool.x) * 0.18;
+          tool.y += (tool.targetY - tool.y) * 0.18;
+          tool.z = 5.0;
+          tool.cutting = false;
+        }
+
+        // Cập nhật tọa độ HUD
+        hudX.textContent = (tool.x * 0.4).toFixed(1).padStart(5, "0");
+        hudY.textContent = ((H - tool.y) * 0.4).toFixed(1).padStart(5, "0");
+        hudZ.textContent = (tool.z >= 0 ? "+" : "") + tool.z.toFixed(2);
+
+        drawGrid();
+        strokes.forEach(drawStroke);
+
+        // Cập nhật hạt phoi / tia lửa
+        for (let i = particles.length - 1; i >= 0; i--) {
+          const p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.12;
+          p.life -= p.decay;
+          if (p.life <= 0) {
+            particles.splice(i, 1);
+            continue;
+          }
+          ctx.globalAlpha = p.life;
+          ctx.fillStyle = p.color;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+
+        drawToolhead();
+      };
+      tick();
+    })();
+  </script>
+</body>
+</html>

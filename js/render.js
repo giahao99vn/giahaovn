@@ -15,7 +15,10 @@
     const dots = (p) => (p.colors || []).map((c) => `<span style="background:${c}"></span>`).join("");
 
     const tag = (p) => {
-      const cls = p.tech === "u1" ? "card__tag--multi" : p.tech === "cnc" ? "card__tag--wood" : p.tech === "hybrid" ? "card__tag--hybrid" : "";
+      const cls = p.tech === "u1" ? "card__tag--multi"
+        : p.tech === "cnc" ? "card__tag--wood"
+        : p.tech === "alu" ? "card__tag--alu"
+        : p.tech === "hybrid" ? "card__tag--hybrid" : "";
       return `<span class="card__tag ${cls}">${esc(t("tag." + p.tech))}</span>`;
     };
 
@@ -24,7 +27,7 @@
       .sort((a, b) => a.featured.localeCompare(b.featured))
       .map((p) => `
         <button class="bento__tile bento__tile--${p.featured} reveal is-visible" data-id="${p.id}">
-          <img src="${img(p)}" alt="${esc(alt(p))}" width="900" height="900" loading="lazy" decoding="async" />
+          <img src="${img(p)}" alt="${esc(alt(p))}" width="900" height="900" ${p.featured === "a" ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'} decoding="async" />
           <div class="bento__text">
             <h3>${esc(L(p.name))}</h3>
             <p>${esc(L(p.tagline))}</p>
