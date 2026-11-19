@@ -45,7 +45,7 @@ function run() {
   LANGS.forEach((L) => {
     const lang = L.code;
     const root = lang === CFG.defaultLang ? "" : "../";
-    const R = Render.make(lang, DICT, root);
+    const R = Render.make(lang, DICT, root, CFG);
     const t = R.t;
 
     // Relative links to other language versions
@@ -59,26 +59,57 @@ function run() {
 
     // ---------- Schema.org JSON-LD ----------
     const orgId = `${SITE}/#organization`;
+    const shipCfg = CFG.shipping || { rateVnd: "30000", handlingDays: [1, 2], transitDays: [2, 4] };
+    const retCfg = CFG.returnPolicy || { days: 7 };
+    const shippingDetails = {
+      "@type": "OfferShippingDetails",
+      shippingRate: {
+        "@type": "MonetaryAmount",
+        value: String(shipCfg.rateVnd),
+        currency: "VND"
+      },
+      shippingDestination: {
+        "@type": "DefinedRegion",
+        addressCountry: "VN"
+      },
+      deliveryTime: {
+        "@type": "ShippingDeliveryTime",
+        handlingTime: {
+          "@type": "QuantitativeValue",
+          minValue: shipCfg.handlingDays[0],
+          maxValue: shipCfg.handlingDays[1],
+          unitCode: "DAY"
+        },
+        transitTime: {
+          "@type": "QuantitativeValue",
+          minValue: shipCfg.transitDays[0],
+          maxValue: shipCfg.transitDays[1],
+          unitCode: "DAY"
+        }
+      }
+    };
+    const hasMerchantReturnPolicy = {
+      "@type": "MerchantReturnPolicy",
+      applicableCountry: "VN",
+      returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+      merchantReturnDays: retCfg.days,
+      returnMethod: "https://schema.org/ReturnByMail",
+      returnFees: "https://schema.org/FreeReturn"
+    };
     const parseOffer = (p) => {
       const raw = (p.price && p.price.vi) || "";
       const nums = (raw.match(/\d+(?:\.\d+)*/g) || []).map((s) => Number(s.replace(/\./g, ""))).filter((n) => n >= 1000);
       const itemUrl = `${urlFor(lang)}#p-${p.id}`;
-      if (nums.length >= 2) {
-        return {
-          "@type": "AggregateOffer",
-          lowPrice: String(nums[0]),
-          highPrice: String(nums[1]),
-          priceCurrency: "VND",
-          availability: "https://schema.org/InStock",
-          url: itemUrl
-        };
-      }
       return {
         "@type": "Offer",
         price: String(nums[0] || 99000),
         priceCurrency: "VND",
+        priceValidUntil: `${new Date().getFullYear() + 1}-12-31`,
+        itemCondition: "https://schema.org/NewCondition",
         availability: "https://schema.org/InStock",
-        url: itemUrl
+        url: itemUrl,
+        shippingDetails,
+        hasMerchantReturnPolicy
       };
     };
 
@@ -95,7 +126,7 @@ function run() {
           image: `${SITE}/assets/og-image.jpg`,
           description: t("meta.desc"),
           telephone: CFG.phoneIntl,
-          priceRange: "39.000₫ - 650.000₫",
+          ...(CFG.showPrices ? { priceRange: "39.000₫ - 650.000₫" } : {}),
           address: {
             "@type": "PostalAddress",
             streetAddress: CFG.address.street,
@@ -158,7 +189,7 @@ function run() {
           "@id": `${urlFor(lang)}#collection`,
           name: t("col.title").replace(/\.$/, ""),
           numberOfItems: PRODUCTS.length,
-          itemListElement: PRODUCTS.map((p, i) => ({
+          itemListElement: PRODUCTS.map((p, i) => (CFG.showPrices ? {
             "@type": "ListItem",
             position: i + 1,
             url: `${urlFor(lang)}#p-${p.id}`,
@@ -173,6 +204,13 @@ function run() {
               material: R.L(p.material),
               offers: parseOffer(p)
             }
+          } : {
+            "@type": "ListItem",
+            position: i + 1,
+            name: R.L(p.name),
+            description: R.L(p.desc),
+            url: `${urlFor(lang)}#p-${p.id}`,
+            image: `${SITE}/${p.image}`
           }))
         }
       ]

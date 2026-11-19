@@ -6,8 +6,10 @@
   const esc = (s) => String(s == null ? "" : s)
     .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
-  function make(lang, dict, prefix) {
+  function make(lang, dict, prefix, cfg) {
     prefix = prefix || "";
+    cfg = cfg || (root.SITE_CONFIG || {});
+    const showPrices = !!cfg.showPrices;
     const t = (k) => (dict[lang] && dict[lang][k] != null ? dict[lang][k] : dict.vi[k] != null ? dict.vi[k] : k);
     const L = (o) => (o && typeof o === "object" ? (o[lang] != null ? o[lang] : o.vi != null ? o.vi : o.en) : o);
     const alt = (p) => `${L(p.name)} – ${t("tag." + p.tech)} | GiaHao One`;
@@ -44,7 +46,7 @@
             <p class="visually-hidden">${esc(L(p.desc))}</p>
             <div class="card__dots">${dots(p)}</div>
             <div class="card__foot">
-              ${p.price ? `<span class="card__price">${esc(L(p.price))}</span>` : ""}
+              ${showPrices && p.price ? `<span class="card__price">${esc(L(p.price))}</span>` : ""}
               <span class="link-chevron">${esc(t("card.more"))}</span>
             </div>
           </div>

@@ -82,8 +82,8 @@ window.PRODUCTS = [
     name: { vi: "Bộ lót ly Gỗ", en: "Wood Coaster Set" },
     tagline: { vi: "Hoa văn khắc trên vân gỗ tự nhiên.", en: "Patterns carved into natural grain." },
     desc: {
-      vi: "Bộ lót ly gỗ sồi và gỗ thông với rãnh đồng tâm được phay CNC chính xác, chà nhám mịn và lau dầu thủ công (189.000đ / bộ 6).",
-      en: "Oak and pine coasters with concentric geometric grooves precisely CNC-milled and hand finished (189,000₫ / set of 6)."
+      vi: "Bộ lót ly gỗ sồi và gỗ thông với rãnh đồng tâm được phay CNC chính xác, chà nhám mịn và lau dầu thủ công.",
+      en: "Oak and pine coasters with concentric geometric grooves precisely CNC-milled and hand finished."
     },
     material: { vi: "Gỗ sồi, gỗ thông", en: "Oak, pine" },
     size: { vi: "Đường kính khoảng 95 mm", en: "Approx. 95 mm diameter" }
@@ -108,8 +108,8 @@ window.PRODUCTS = [
     name: { vi: "Móc khoá Hình học", en: "Geo Keychains" },
     tagline: { vi: "Nhỏ gọn. Nhiều màu sắc.", en: "Small. Full of color." },
     desc: {
-      vi: "Bộ móc khoá hình khối hình học, phối màu tươi sáng — món quà nhỏ xinh cho bạn bè (119.000đ / bộ 4).",
-      en: "Geometric keychains in bright color combinations — a small, delightful gift (119,000₫ / set of 4)."
+      vi: "Bộ móc khoá hình khối hình học, phối màu tươi sáng — món quà nhỏ xinh cho bạn bè.",
+      en: "Geometric keychains in bright color combinations — a small, delightful gift."
     },
     material: { vi: "PLA đa màu, khoen kim loại", en: "Multicolor PLA, metal ring" },
     size: { vi: "Khoảng 40 mm", en: "Approx. 40 mm" }

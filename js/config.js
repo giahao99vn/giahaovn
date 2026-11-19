@@ -34,5 +34,20 @@ window.SITE_CONFIG = {
     "https://www.tiktok.com/@giahaoone"
   ],
 
+  // Chế độ hiển thị giá bán & khai báo người bán (Schema.org Offer):
+  // - false (mặc định): Ẩn toàn bộ giá bán (Website trưng bày / giới thiệu sản phẩm thuần túy, không cần thông báo Bộ Công Thương).
+  // - true: Hiển thị giá bán trên thẻ sản phẩm, cửa sổ chi tiết và bật Google Merchant Listings (bật sau khi đã thông báo Bộ Công Thương).
+  showPrices: false,
+
+  // Cấu hình vận chuyển & đổi trả cho Google Merchant Listings (chỉ kích hoạt khi showPrices: true)
+  shipping: {
+    rateVnd: "30000",           // phí vận chuyển tiêu chuẩn toàn quốc (VNĐ)
+    handlingDays: [1, 2],       // thời gian gia công / khắc tên (1–2 ngày)
+    transitDays: [2, 4]         // thời gian giao hàng dự kiến (2–4 ngày)
+  },
+  returnPolicy: {
+    days: 7                     // hỗ trợ đổi trả trong 7 ngày nếu lỗi sản xuất
+  },
+
   defaultLang: "vi"
 };

@@ -213,7 +213,7 @@
           <p>${L(p.tagline)}</p>
           <div class="card__dots">${(p.colors || []).map((c) => `<span style="background:${c}"></span>`).join("")}</div>
           <div class="card__foot">
-            ${p.price ? `<span class="card__price">${L(p.price)}</span>` : ""}
+            ${CFG.showPrices && p.price ? `<span class="card__price">${L(p.price)}</span>` : ""}
             <span class="link-chevron">${t("card.more")}</span>
           </div>
         </div>
@@ -257,7 +257,7 @@
         <p class="tagline">${L(p.tagline)}</p>
         <p class="desc">${L(p.desc)}</p>
         <dl class="specs">
-          ${p.price ? `<div><dt>${t("sheet.price")}</dt><dd class="specs__price">${L(p.price)}</dd></div>` : ""}
+          ${CFG.showPrices && p.price ? `<div><dt>${t("sheet.price")}</dt><dd class="specs__price">${L(p.price)}</dd></div>` : ""}
           <div><dt>${t("sheet.made")}</dt><dd>${machine}</dd></div>
           <div><dt>${t("sheet.material")}</dt><dd>${L(p.material)}</dd></div>
           <div><dt>${t("sheet.size")}</dt><dd>${L(p.size)}</dd></div>
